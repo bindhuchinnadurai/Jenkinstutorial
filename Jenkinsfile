@@ -25,7 +25,8 @@ pipeline {
 
         stage ('Deploy to Production'){
             steps {
-               sh "scp **/target/*.war bindhuchinnadurai@localhost:/Users/bindhuchinnadurai/Documents/TomcatDocker/tomcatvolume/tomcat/data/"
+                   sh "cp -R **/target/*.war /tmp"
+                   sh "cp -r /tmp/webapp.war /Users/bindhuchinnadurai/Documents/TomcatDocker/tomcatvolume/tomcat/data/"
                  }
             }
         }
