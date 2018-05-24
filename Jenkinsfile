@@ -25,7 +25,7 @@ pipeline {
 
         stage ('Deploy to Production'){
             steps {
-               sh "cp -R **/target/*.war /Users/bindhuchinnadurai/Documents/TomcatDocker/tomcatvolume/tomcat/data/"
+               sh "cp -R **/target/*.war /tmp"
                  }
             }
         }
