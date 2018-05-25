@@ -24,9 +24,24 @@ pipeline {
         }
 
         stage ('Deploy to Production'){
-            steps {
-                   sh "cp -R **/target/*.war /tmp/tomcat/data/"
-                 }
+            steps{
+                timeout(time:5, unit:'DAYS'){
+                    input message:'Approve PRODUCTION Deployment?'
+                }
+
+                build job: 'Deploy-to-Prod'
+            }
+            post {
+                success {
+                    echo 'Code deployed to Production.'
+                }
+
+                failure {
+                    echo ' Deployment failed.'
+                }
             }
         }
+
+
+    }
 }
